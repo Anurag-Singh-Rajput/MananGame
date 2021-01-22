@@ -4,7 +4,6 @@
 #include<stdio.h>
 #include<process.h>
 #include<ctype.h>
-#include<dos.h>
 //____________________________________________
 //               C L A S S
 //_____________________________________________
@@ -231,7 +230,7 @@ void main()
 		cout<<"03. CLOSE AN ACCOUNT"<<endl;
 		cout<<"04. Details"<<endl;
 		cout<<"05. Win Money"<<endl;
-		cout<<"06. Exit"
+		cout<<"06. Exit"<<endl;
 		cout<<"Select Your Option (1-6) : ";
 		ch=getch();   //not show input
 		switch(ch)
