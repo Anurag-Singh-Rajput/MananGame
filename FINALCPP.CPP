@@ -1,9 +1,10 @@
-#include<iostream.h>
-#include<fstream.h>
+#include<iostream>
+#include<fstream>
 #include<conio.h>
 #include<stdio.h>
 #include<process.h>
 #include<ctype.h>
+using namespace std;
 //____________________________________________
 //               C L A S S
 //_____________________________________________
@@ -19,6 +20,7 @@ class account
 		cout<<"====NEW ACCOUNT ENTRY FORM===="<<endl;
 		cout<<"Enter The account Number : "<<endl;
 		cin>>acno;
+		cin.ignore();
 		cout<<"Enter The Name of The account Holder: "<<endl;
 		gets(name);
 		cout<<"Enter Type of The account (C/S) : "<<endl;
@@ -79,7 +81,7 @@ account ac;  //globally declared
 // 	function to write in file
 //____________________________________________________________
 void write_account()
-{	clrscr();
+{	
 	fp.open("account.dat",ios::out|ios::app);
 	ac.create_account();
 	fp.write((char*)&ac,sizeof(account));
@@ -91,7 +93,7 @@ void write_account()
 //________________________________________________________________
 void display_sp()
 {
-	clrscr();
+	
 	int no,P;
 	cout<<"====BALANCE DETAILS===="<<endl;
 	cout<<"Enter the Account Number : "<<endl;
@@ -127,7 +129,7 @@ void display_sp()
 //_______________________________________________________________
 
 void delete_account()
-{     	clrscr();
+{     
 	int no,P;
 	cout<<"\t===Delete Record===="<<endl;
 	cout<<"\tEnter The Account No. : "<<endl;
@@ -164,7 +166,7 @@ getch();
 // 	function to deposit and withdraw amounts
 //_______________________________________________________________
 void deposit_withdraw(int option)
-{	clrscr();
+{	
 	int P;
 	int no,found=0,amt;
 
@@ -214,16 +216,25 @@ void deposit_withdraw(int option)
 	getch();
 }
 
+// function to ask questions
+
+void ques1(){
+	int dep;
+	cout<<"Welcome to the Quiz."<<endl;
+	cout<<"If you answer all the 5 questions correctly you will gain double the price else you lose it all"<<endl;
+	cout<<"Enter the moeny you want to bet"<<endl;
+	cin>>dep;
+	
+}
+
 //________________________________________________________________
 // 	THE MAIN FUNCTION OF PROGRAM
 //________________________________________________________________
-void main()
+int main()
 {	char ch;
-	textcolor(BLACK);
-	textbackground(RED);
 	do
 	{
-		clrscr();
+		
 		cout<<"MAIN MENU"<<endl;
 		cout<<"01. NEW ACCOUNT"<<endl;
 		cout<<"02. DEPOSIT AMOUNT"<<endl;
@@ -242,9 +253,12 @@ void main()
 			case '3': delete_account();
 				  break;
 			case '4' : display_sp();
+				  break;
 			case '6': exit(0);
 		}
 	}while(ch!='7');
+
+	return 0;
 }
 
 //***************************************************************************
