@@ -47,10 +47,6 @@ public:
 	{
 		deposit -= x;
 	}
-	void report()
-	{
-		cout << acno << " " << name << " " << deposit << endl;
-	}
 	int retacno()
 	{
 		return acno;
