@@ -205,7 +205,7 @@ void win_loose(int option, int x)
 //_______________________________________________________________
 // 	function to deposit and withdraw amounts
 //_______________________________________________________________
-void deposit_withdraw(int option)
+void deposit()
 {
 	int P;
 	int no, found = 0, amt;
@@ -220,25 +220,11 @@ void deposit_withdraw(int option)
 	{
 		if (ac.retacno() == no && ac.retpin() == P)
 		{
-			ac.show_account();
-			if (option == 1)
-			{
 
 				cout << "Enter The amount : ";
 				cin >> amt;
 				ac.dep(amt);
-			}
-			if (option == 2)
-			{
-
-				cout << "Enter The amount : ";
-				cin >> amt;
-				int bal = ac.retdeposit() - amt;
-				if (amt > bal)
-					cout << "\nInsufficient balance";
-				else
-					ac.draw(amt);
-			}
+	
 			int pos = -1 * sizeof(ac);
 			fp.seekp(pos, ios::cur);
 			fp.write((char *)&ac, sizeof(account));
@@ -333,9 +319,9 @@ int main()
 	{
 
 		cout << "MAIN MENU" << endl;
-		cout << "01. NEW ACCOUNT" << endl;
-		cout << "02. DEPOSIT AMOUNT" << endl;
-		cout << "03. CLOSE AN ACCOUNT" << endl;
+		cout << "01. New Account" << endl;
+		cout << "02. Deposit" << endl;
+		cout << "03. Close Account" << endl;
 		cout << "04. Details" << endl;
 		cout << "05. Win Money" << endl;
 		cout << "06. Exit" << endl;
@@ -347,7 +333,7 @@ int main()
 			write_account();
 			break;
 		case '2':
-			deposit_withdraw(1);
+			deposit();
 			break;
 		case '3':
 			delete_account();
