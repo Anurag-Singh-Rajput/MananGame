@@ -13,7 +13,6 @@ class account
 {
 	int acno, deposit, withdraw, x, pin;
 	char name[50];
-	char type;
 
 public:
 	void create_account()
@@ -24,11 +23,7 @@ public:
 		cin.ignore();
 		cout << "Enter The Name of The account Holder: " << endl;
 		gets(name);
-		cout << "Enter Type of The account (C/S) : " << endl;
-		cin >> type;
-		type = toupper(type);
-
-		cout << "Enter Initial amount>=500 for Saving & >=1000 for Current :" << endl;
+		cout << "Enter Initial amount :" << endl;
 		cin >> deposit;
 		cout << "Enter 4 digit pin  " << endl;
 		cin >> pin;
@@ -41,7 +36,6 @@ public:
 			 << endl;
 		cout << "Account No.                 : " << acno << endl;
 		cout << "Account Holder Name         : " << name << endl;
-		cout << "Type of Account             : " << type << endl;
 		cout << "Balance amount              : " << deposit << endl;
 	}
 
@@ -55,7 +49,7 @@ public:
 	}
 	void report()
 	{
-		cout << acno << " " << name << " " << type << " " << deposit << endl;
+		cout << acno << " " << name << " " << deposit << endl;
 	}
 	int retacno()
 	{
@@ -65,11 +59,6 @@ public:
 	{
 		return deposit;
 	}
-	char rettype()
-	{
-		return type;
-	}
-
 	int retpin()
 	{
 		return pin;
@@ -163,7 +152,9 @@ void delete_account()
 	getch();
 }
 
-// function to win loose money
+// _______________________________________
+// function to win/loose money
+// _______________________________________
 
 void win_loose(int option, int x)
 {
@@ -192,7 +183,12 @@ void win_loose(int option, int x)
 			int pos = -1 * sizeof(ac);
 			fp.seekp(pos, ios::cur);
 			fp.write((char *)&ac, sizeof(account));
-			cout << "Record Updated " << endl;
+			if(option==1){
+				cout<<"Congratulations!! You have won "<<x*2<< "(including your deposit)"<<endl;
+			}
+			else {
+				cout<<"Sorry You just lost "<<x*2;
+			}
 			found = 1;
 		}
 	}
@@ -324,7 +320,7 @@ void ques()
 	{
 		win_loose(1,dep*2);
 	}
-	else win_loose(2,dep);
+	else win_loose(2,dep*2);
 }
 
 //________________________________________________________________
